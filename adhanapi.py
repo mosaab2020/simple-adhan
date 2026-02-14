@@ -28,14 +28,14 @@ class Adhan:
 
     # return a 12-hour format time
     def format_twelve_hour(self):
-        prefix = " (AM)"
+        prefix = " (AM) "
         s_time_12 = self.s_time.split(":")
 
         time12 = int(s_time_12[0])
         if time12 >= 12:
             if time12 != 12:
                 time12 = time12 - 12
-            prefix = " (PM)"
+            prefix = " (PM) "
 
         s_time_12[0] = str(time12)
 
