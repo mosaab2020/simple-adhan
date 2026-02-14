@@ -2,6 +2,15 @@
 Simple script for getting adhan using the [AlAdhan api](https://aladhan.com/).
 can be used with waybar.
 
+# only tested on linux!
+
+## Dependencies
+you need the following installed:
+[python3](https://www.python.org/),
+[requests](https://pypi.org/project/requests/),
+[requests-cache](https://requests-cache.readthedocs.io/en/stable/user_guide/installation.html),
+argparse
+
 ## Installation
 ```bash
 git clone https://github.com/mosaab2020/simple-adhan.git
