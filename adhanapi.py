@@ -47,7 +47,8 @@ class PrayClient:
         self.country = country
         self.city = city
         self.today = datetime.today()
-        self.expire = (self.today + timedelta(days=1)).date()
+        self.expire = (self.today + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+        print(self.expire)
         self.session = CachedSession("pray_times", use_cache_dir=True, expire_after=self.expire)
         self.data = None
         return
