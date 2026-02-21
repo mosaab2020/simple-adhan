@@ -63,7 +63,7 @@ class PrayClient:
 
             # print("URL:", response.url)
             # print("Status:", response.status_code)
-            print(response.url)
+            # print(response.url)
 
             # get the hijri date
             self.hijri_date = self.data["data"]["date"]["hijri"]["date"]

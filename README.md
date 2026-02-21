@@ -2,7 +2,7 @@
 Simple script for getting adhan using the [AlAdhan api](https://aladhan.com/).
 can be used with waybar.
 
-## tested only on linux!
+## TESTED ONLY ON LINUX
 
 ## Dependencies
 you need the following installed:
@@ -18,21 +18,31 @@ cd simple-adhan
 ```
 
 ## Usage
-- `--json` or `-j` to output json
+- `--json`, `-j`: output json
+- `--country COUNTRY`, `-C COUNTRY`: choose a country (default: SA)
+- `--city CITY`, `-c CITY`: choose a city (default: Mecca)
+- `--date`: get the hijri date
 
 ## Run it
+
+### Example:
 ```bash
-./path/to/script/main.py
+./path/to/script/main.py --country "UK" --city "London"
+```
+or 
+
+```bash
+./path/to/script/main.py --country "UK" --city "London" --date
 ```
 
 ### Use it with waybar:
 ```json
-"custom/salah": {
+"custom/simple_adhan": {
+    "exec": "/path/to/script/main.py --json --country COUNTRY --city CITY",
     "format": "{}",
-    "interval": 60,
-    "escape": true,
-    "return-type": "json",
-    "exec": "/path/to/script/main.py --json"
-},
+    "format-alt": "{alt}",
+    "interval": 60, 
+    "return-type": "json"
+}
 ```
 
