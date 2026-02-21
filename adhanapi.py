@@ -48,11 +48,11 @@ class PrayClient:
         self.city = city
         self.today = datetime.today()
         self.expire = (self.today + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
-        self.session = CachedSession("pray_times", use_cache_dir=True, expire_after=self.expire)
+        self.session = CachedSession("%s_%s_times" % (self.country, self.city),
+                                     use_cache_dir=True,
+                                     expire_after=self.expire)
         self.data = None
-        return
-
-    def today_adhan_times(self):
+        self.hijri_date = None
         try:
             parameters = {"date": self.today.strftime("%Y-%m-%d"), "country": self.country, "city": self.city}
             response = self.session.get(URL, params=parameters)
@@ -63,22 +63,26 @@ class PrayClient:
 
             # print("URL:", response.url)
             # print("Status:", response.status_code)
-            # print(data["data"]["timings"])
+            print(response.url)
 
-            list = []
-            for s_name, s_time in self.data["data"]["timings"].items():
-                if s_name in TIMES_LIST:
-                    list.append(Adhan(s_name, s_time))
-
-            return list
-        except exceptions.RequestException:
-            error_data = response.json()["data"]
-            print("Request error:", error_data, file=stderr)
+            # get the hijri date
+            self.hijri_date = self.data["data"]["date"]["hijri"]["date"]
+        except exceptions.HTTPError as e:
+            print("HTTP error:", e.response.json()["status"])
+            print(e.response.json()["data"])
             exit(1)
+        except exceptions.ConnectionError as e:
+            print("Connection error:\n%s" % e)
+            exit(1)
+        except exceptions.RequestException as e:
+            print("Request exception:\n%s" % e)
+            exit(1)
+        return
 
-    # def get_sunrise(self):
-    #     if self.data is None:
-    #         return
-    #     for s_name, s_time in self.data["data"]["timings"]:
-    #         if s_name == "Sunrise":
-    #             pass
+    def today_adhan_times(self):
+        list = []
+        for s_name, s_time in self.data["data"]["timings"].items():
+            if s_name in TIMES_LIST:
+                list.append(Adhan(s_name, s_time))
+
+        return list

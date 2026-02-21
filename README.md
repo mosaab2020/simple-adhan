@@ -2,7 +2,7 @@
 Simple script for getting adhan using the [AlAdhan api](https://aladhan.com/).
 can be used with waybar.
 
-# only tested on linux!
+## tested only on linux!
 
 ## Dependencies
 you need the following installed:
