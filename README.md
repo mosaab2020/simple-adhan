@@ -21,7 +21,7 @@ cd simple-adhan
 - `--json`, `-j`: output json
 - `--country COUNTRY`, `-C COUNTRY`: choose a country (default: SA)
 - `--city CITY`, `-c CITY`: choose a city (default: Mecca)
-- `--date`: get the hijri date
+- `--date`, `-d`: get the hijri date
 
 ## Run it
 
