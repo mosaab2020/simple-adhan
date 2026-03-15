@@ -61,6 +61,7 @@ class PrayClient:
 
             self.data = response.json()
 
+            # for debugging:
             # print("URL:", response.url)
             # print("Status:", response.status_code)
             # print(response.url)
@@ -69,14 +70,14 @@ class PrayClient:
             self.hijri_date = self.data["data"]["date"]["hijri"]["date"]
         except exceptions.HTTPError as e:
             print("HTTP error:", e.response.json()["status"])
-            print(e.response.json()["data"])
+            print(e.response.json()["data"], file=stderr)
             exit(1)
         except exceptions.ConnectionError as e:
-            print("Connection error:\n%s" % e)
-            exit(1)
+            print("Connection error:\n%s" % e, file=stderr)
+            exit(2)
         except exceptions.RequestException as e:
-            print("Request exception:\n%s" % e)
-            exit(1)
+            print("Request exception:\n%s" % e, file=stderr)
+            exit(3)
         return
 
     def today_adhan_times(self):
