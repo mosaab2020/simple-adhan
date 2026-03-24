@@ -44,4 +44,9 @@ simple-adhan --country "UK" --city "London" --date
     "return-type": "json"
 }
 ```
-
+#### Customize it in the style.css file in waybar config:
+```css
+#custom-simple_adhan {
+    /* add your styles here */
+}
+```
