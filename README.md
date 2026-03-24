@@ -2,7 +2,7 @@
 Simple script for getting adhan using the [AlAdhan api](https://aladhan.com/).
 can be used with waybar.
 
-![program gif](https://github.com/mosaab2020/simple-adhan/tree/main/gif)
+![program gif](https://github.com/mosaab2020/simple-adhan/blob/main/gif/gif1.gif)
 
 ## Dependencies
 you need the following installed:
