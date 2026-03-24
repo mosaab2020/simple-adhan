@@ -2,20 +2,16 @@
 Simple script for getting adhan using the [AlAdhan api](https://aladhan.com/).
 can be used with waybar.
 
-## TESTED ONLY ON LINUX
-
 ## Dependencies
 you need the following installed:
-[python3](https://www.python.org/),
-[requests](https://pypi.org/project/requests/),
-[requests-cache](https://requests-cache.readthedocs.io/en/stable/user_guide/installation.html),
-argparse
+[python3](https://www.python.org/)
 
 ## Installation
+
 ```bash
-git clone https://github.com/mosaab2020/simple-adhan.git
-cd simple-adhan
+pip install simple-adhan
 ```
+
 
 ## Usage
 - `--json`, `-j`: output json
@@ -27,21 +23,23 @@ cd simple-adhan
 
 ### Example:
 ```bash
-./path/to/script/main.py --country "UK" --city "London"
+simple-adhan --country "UK" --city "London"
 ```
-or 
+or if you want to get the hijri date:
 
 ```bash
-./path/to/script/main.py --country "UK" --city "London" --date
+simple-adhan --country "UK" --city "London" --date
 ```
 
 ### Use it with waybar:
+#### Make sure that simple-adhan is in your global PATH so waybar can access it.
+
 ```json
 "custom/simple_adhan": {
-    "exec": "/path/to/script/main.py --json --country COUNTRY --city CITY",
+    "exec": "simple-adhan --json --country COUNTRY --city CITY",
     "format": "{}",
     "format-alt": "{alt}",
-    "interval": 60, 
+    "interval": 60,
     "return-type": "json"
 }
 ```
