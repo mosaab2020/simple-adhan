@@ -2,6 +2,7 @@
 Simple script for getting adhan using the [AlAdhan api](https://aladhan.com/).
 can be used with waybar.
 
+
 ## Dependencies
 you need the following installed:
 [python3](https://www.python.org/)
@@ -11,7 +12,6 @@ you need the following installed:
 ```bash
 pip install simple-adhan
 ```
-
 
 ## Usage
 - `--json`, `-j`: output json
