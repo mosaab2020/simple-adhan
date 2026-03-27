@@ -51,20 +51,16 @@ class PrayClient:
         self.session = CachedSession("%s_%s_times" % (self.country, self.city),
                                      use_cache_dir=True,
                                      expire_after=self.expire)
+        self.response = None
         self.data = None
         self.hijri_date = None
         try:
             parameters = {"date": self.today.strftime("%Y-%m-%d"), "country": self.country, "city": self.city}
-            response = self.session.get(URL, params=parameters)
+            self.response = self.session.get(URL, params=parameters)
 
-            response.raise_for_status()
+            self.response.raise_for_status()
 
-            self.data = response.json()
-
-            # for debugging:
-            # print("URL:", response.url)
-            # print("Status:", response.status_code)
-            # print(response.url)
+            self.data = self.response.json()
 
             # get the hijri date
             self.hijri_date = self.data["data"]["date"]["hijri"]["date"]
@@ -87,3 +83,10 @@ class PrayClient:
                 list.append(Adhan(s_name, s_time))
 
         return list
+
+    def print_response_debug_info(self):
+        print("URL:", self.response.url)
+        print("Status:", self.response.status_code)
+        print("Data:")
+        print(self.data)
+        return
