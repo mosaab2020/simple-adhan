@@ -42,6 +42,7 @@ def simple_adhan_init():
     parser.add_argument("-d", "--date", action="store_true", help="get hijri date")
     parser.add_argument("-C", "--country", help="choose a country (default: SA)")
     parser.add_argument("-c", "--city", help="choose a city (default: Mecca)")
+    parser.add_argument("--debug", action="store_true", help="show debug info")
     args = parser.parse_args()
 
     # print(args.country, args.city)
@@ -55,6 +56,8 @@ def simple_adhan_init():
 
     if args.date:
         print("Date:", prayer_client.hijri_date)
+    elif args.debug:
+        prayer_client.print_response_debug_info()
     else:
         adhans = prayer_client.today_adhan_times()
 
@@ -75,3 +78,6 @@ def simple_adhan_init():
 
     return
 
+
+if __name__ == "__main__":
+    simple_adhan_init()
